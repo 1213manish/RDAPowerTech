@@ -27,6 +27,9 @@ if (env('VERCEL') || env('APP_ENV') === 'production') {
         mkdir($storagePath . '/framework/sessions', 0755, true);
         mkdir($storagePath . '/bootstrap/cache', 0755, true);
     }
+    if (!is_dir('/tmp/views')) {
+        mkdir('/tmp/views', 0755, true);
+    }
     $app->useStoragePath($storagePath);
 }
 

@@ -27,6 +27,11 @@
     "APP_ENV": "production",
     "APP_DEBUG": "true",
     "APP_KEY": "base64:6WQgulhHo9vDNSZ42IPkFW51iY8ZlYSGbboZzIDBiu4=",
+    "VIEW_COMPILED_PATH": "/tmp/views",
+    "APP_SERVICES_CACHE": "/tmp/services.php",
+    "APP_PACKAGES_CACHE": "/tmp/packages.php",
+    "APP_CONFIG_CACHE": "/tmp/config.php",
+    "APP_ROUTES_CACHE": "/tmp/routes.php",
     "LOG_CHANNEL": "stderr",
     "CACHE_STORE": "array",
     "SESSION_DRIVER": "cookie"
