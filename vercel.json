@@ -23,6 +23,7 @@
   "env": {
     "APP_ENV": "production",
     "APP_DEBUG": "true",
+    "APP_KEY": "base64:6WQgulhHo9vDNSZ42IPkFW51iY8ZlYSGbboZzIDBiu4=",
     "LOG_CHANNEL": "stderr",
     "CACHE_STORE": "array",
     "SESSION_DRIVER": "cookie"
