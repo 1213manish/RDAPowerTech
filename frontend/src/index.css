@@ -30,6 +30,15 @@
   padding: 0;
 }
 
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 110px;
+}
+
+[id] {
+  scroll-margin-top: 110px;
+}
+
 body {
   background-color: #FFFFFF;
   color: var(--text-main);
