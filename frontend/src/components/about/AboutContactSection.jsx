@@ -1,7 +1,10 @@
 import React from 'react';
 import { Phone, Mail, MapPin, Clock, ArrowRight } from 'lucide-react';
+import { useQuoteModal } from '../../context/QuoteContext';
 
 export default function AboutContactSection() {
+  const { openQuoteModal } = useQuoteModal();
+
   return (
     <section id="about" style={{
       width: '100%',
@@ -10,7 +13,7 @@ export default function AboutContactSection() {
       borderTop: '1px solid #e2e8f0',
     }}>
       <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 40px' }}>
-        
+
         {/* ── 3 Column Coordinated Layout on Desktop ── */}
         <div style={{
           display: 'grid',
@@ -18,7 +21,7 @@ export default function AboutContactSection() {
           gap: '24px',
           alignItems: 'stretch',
         }}
-        className="contact-three-col-grid"
+          className="contact-three-col-grid"
         >
 
           {/* ── CARD 1: ABOUT US (Dark Navy Panel) ── */}
@@ -150,10 +153,10 @@ export default function AboutContactSection() {
               </div>
             </div>
 
-            {/* GET A FREE QUOTE Button */}
+            {/* CONTACT US Button */}
             <div style={{ marginTop: '24px' }}>
-              <a
-                href="#quote"
+              <button
+                onClick={() => openQuoteModal()}
                 style={{
                   display: 'flex',
                   alignItems: 'center',
@@ -166,7 +169,8 @@ export default function AboutContactSection() {
                   textTransform: 'uppercase',
                   padding: '14px 20px',
                   borderRadius: '10px',
-                  textDecoration: 'none',
+                  border: 'none',
+                  cursor: 'pointer',
                   boxShadow: '0 4px 14px rgba(255,184,0,0.3)',
                   transition: 'all 0.2s',
                   width: '100%',
@@ -175,9 +179,9 @@ export default function AboutContactSection() {
                 onMouseEnter={(e) => { e.currentTarget.style.background = '#e6a600'; }}
                 onMouseLeave={(e) => { e.currentTarget.style.background = '#FFB800'; }}
               >
-                <span>GET A FREE QUOTE</span>
+                <span>CONTACT US</span>
                 <ArrowRight style={{ width: '18px', height: '18px' }} />
-              </a>
+              </button>
             </div>
           </div>
 

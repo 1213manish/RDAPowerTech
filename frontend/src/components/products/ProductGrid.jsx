@@ -1,5 +1,6 @@
 import React from 'react';
 import { ArrowRight } from 'lucide-react';
+import { useQuoteModal } from '../../context/QuoteContext';
 
 import plcImg from '../../assets/products/plc-hmi.png';
 import vfdImg from '../../assets/products/vfd.png';
@@ -11,7 +12,9 @@ import lubricantsImg from '../../assets/products/lubricants.png';
 import cablesImg from '../../assets/products/cables.png';
 
 export default function ProductGrid() {
+  const { openQuoteModal } = useQuoteModal();
   const products = [
+
     { name: 'PLC & HMI', image: plcImg },
     { name: 'VARIABLE FREQUENCY DRIVES (VFD)', image: vfdImg },
     { name: 'INDUSTRIAL SENSORS', image: sensorsImg },
@@ -69,6 +72,7 @@ export default function ProductGrid() {
           {products.map((item, idx) => (
             <div
               key={idx}
+              onClick={() => openQuoteModal(item.name)}
               style={{
                 background: '#ffffff',
                 borderRadius: '16px',

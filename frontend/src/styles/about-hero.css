@@ -1,0 +1,217 @@
+/* ================================================================
+   About Us — Hero Section
+   Matches the RDAPowerTech visual language (dark navy, yellow accent).
+   The refinery image blends into the background from the right.
+   ================================================================ */
+
+.about-hero {
+  position: relative;
+  width: 100%;
+  min-height: 390px;
+  background: #061329;
+  color: #ffffff;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+
+/* ── Background Image Layer with seamless left fade mask ── */
+.about-hero__bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.about-hero__bg-img {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 72%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  opacity: 0.85;
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    rgba(0, 0, 0, 0.25) 15%,
+    rgba(0, 0, 0, 0.75) 35%,
+    black 60%
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    rgba(0, 0, 0, 0.25) 15%,
+    rgba(0, 0, 0, 0.75) 35%,
+    black 60%
+  );
+}
+
+/* Gradient: solid navy on left → transparent on right */
+.about-hero__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to right,
+    #061329 0%,
+    #061329 18%,
+    rgba(6, 19, 41, 0.65) 38%,
+    rgba(6, 19, 41, 0.15) 68%,
+    transparent 100%
+  );
+}
+
+.about-hero__bottom-fade {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 50px;
+  background: linear-gradient(to top, #061329, transparent);
+  z-index: 1;
+}
+
+/* ── Content Container — matches site-wide 1400px / 40px padding ── */
+.about-hero__container {
+  position: relative;
+  z-index: 10;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 40px;
+  width: 100%;
+}
+
+.about-hero__content {
+  max-width: 560px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 54px 0;
+}
+
+/* ── Eyebrow ── */
+.about-hero__eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #FFB800;
+  font-weight: 800;
+  font-size: 14.5px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  font-family: 'Outfit', sans-serif;
+}
+
+.about-hero__eyebrow-line {
+  display: inline-block;
+  width: 38px;
+  height: 2.5px;
+  background: #FFB800;
+  flex-shrink: 0;
+}
+
+/* ── Main Heading ── */
+.about-hero__heading {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  line-height: 0.96;
+  margin: 0;
+}
+
+.about-hero__heading-white {
+  display: block;
+  color: #ffffff;
+  font-size: clamp(2.75rem, 5vw, 4.2rem);
+}
+
+.about-hero__heading-yellow {
+  display: block;
+  color: #FFB800;
+  font-size: clamp(2.75rem, 5vw, 4.2rem);
+}
+
+/* ── Description ── */
+.about-hero__description {
+  font-size: 17.5px;
+  font-weight: 500;
+  color: #D7DFEC;
+  max-width: 500px;
+  margin: 0;
+  line-height: 1.65;
+  font-family: 'Inter', sans-serif;
+}
+
+/* ================================================================
+   Responsive: Tablet (≤ 1024px)
+   ================================================================ */
+@media (max-width: 1024px) {
+  .about-hero {
+    min-height: 320px;
+  }
+
+  .about-hero__content {
+    padding: 44px 0;
+  }
+
+  .about-hero__heading-white,
+  .about-hero__heading-yellow {
+    font-size: clamp(2.2rem, 5vw, 3.2rem);
+  }
+
+  .about-hero__description {
+    font-size: 15px;
+  }
+}
+
+/* ================================================================
+   Responsive: Mobile (≤ 768px)
+   ================================================================ */
+@media (max-width: 768px) {
+  .about-hero {
+    min-height: 280px;
+  }
+
+  .about-hero__container {
+    padding: 0 16px;
+  }
+
+  .about-hero__content {
+    max-width: 100%;
+    padding: 36px 0;
+    gap: 14px;
+  }
+
+  /* On mobile: image goes full-width behind text, dimmed further */
+  .about-hero__bg-img {
+    width: 100%;
+    opacity: 0.25;
+  }
+
+  .about-hero__overlay {
+    background: linear-gradient(
+      to right,
+      #061329 0%,
+      rgba(6, 19, 41, 0.88) 40%,
+      rgba(6, 19, 41, 0.70) 100%
+    );
+  }
+
+  .about-hero__heading-white,
+  .about-hero__heading-yellow {
+    font-size: clamp(2rem, 8vw, 2.8rem);
+  }
+
+  .about-hero__eyebrow {
+    font-size: 12px;
+  }
+
+  .about-hero__eyebrow-line {
+    width: 28px;
+  }
+
+  .about-hero__description {
+    font-size: 14px;
+    max-width: 100%;
+  }
+}

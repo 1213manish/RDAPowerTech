@@ -2,8 +2,10 @@ import React from 'react';
 import { ShieldCheck, Settings, Truck, FileText, Phone, MessageCircle } from 'lucide-react';
 import heroProductsImg from '../../assets/hero/ChatGPT Image Jul 29, 2026, 09_57_35 AM.png';
 import heroBgImg from '../../assets/hero/ChatGPT Image Jul 29, 2026, 09_59_59 AM.png';
+import { useQuoteModal } from '../../context/QuoteContext';
 
 export default function Hero() {
+  const { openQuoteModal } = useQuoteModal();
   return (
     <section
       style={{ position: 'relative', width: '100%', background: '#050D1E', color: '#ffffff', overflow: 'hidden' }}
@@ -98,8 +100,8 @@ export default function Hero() {
             {/* ── CTA Buttons ── */}
             <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '14px', paddingTop: '6px' }}>
               {/* GET A QUOTE */}
-              <a
-                href="#quote"
+              <button
+                onClick={() => openQuoteModal()}
                 style={{
                   display: 'inline-flex',
                   alignItems: 'center',
@@ -112,7 +114,8 @@ export default function Hero() {
                   letterSpacing: '0.06em',
                   padding: '14px 28px',
                   borderRadius: '8px',
-                  textDecoration: 'none',
+                  border: 'none',
+                  cursor: 'pointer',
                   boxShadow: '0 4px 18px rgba(0,102,204,0.45)',
                   transition: 'all 0.2s',
                 }}
@@ -120,7 +123,7 @@ export default function Hero() {
               >
                 <FileText style={{ width: '18px', height: '18px' }} />
                 <span>GET A QUOTE</span>
-              </a>
+              </button>
 
               {/* CALL NOW */}
               <a
@@ -201,7 +204,8 @@ export default function Hero() {
                   zIndex: 10,
                   width: '100%',
                   height: 'auto',
-                  maxHeight: '500px',
+                  maxHeight: '550px',
+                  transform: 'scale(1.10)',
                   objectFit: 'contain',
                   objectPosition: 'center',
                   filter: 'drop-shadow(0 10px 35px rgba(0,102,204,0.3))',

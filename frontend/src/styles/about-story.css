@@ -1,0 +1,254 @@
+/* ================================================================
+   About Us — Our Story Section (Step 2)
+   White/light background, two-column layout.
+   Matches existing RDAPowerTech visual language.
+   ================================================================ */
+
+.about-story {
+  width: 100%;
+  background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
+  padding: 48px 0 40px;
+}
+
+.about-story__container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+/* ── Section Heading (matches homepage OUR PRODUCTS / OUR SERVICES pattern) ── */
+.about-story__section-heading {
+  text-align: center;
+  margin-bottom: 36px;
+}
+
+.about-story__section-heading h2 {
+  font-size: clamp(1.85rem, 3vw, 2.5rem);
+  font-weight: 900;
+  color: #0f172a;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-family: 'Outfit', sans-serif;
+  display: inline-block;
+  position: relative;
+  padding-bottom: 14px;
+  margin: 0;
+}
+
+.about-story__heading-underline {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 64px;
+  height: 3px;
+  background: #FFB800;
+  border-radius: 2px;
+}
+
+/* ── Two-column grid ── */
+.about-story__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: start;
+}
+
+/* ── Left Column ── */
+.about-story__left {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.about-story__paragraph {
+  font-size: 15px;
+  font-weight: 500;
+  color: #475569;
+  line-height: 1.7;
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+}
+
+/* ── Stats Grid ── */
+.about-story__stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+  margin-top: 8px;
+}
+
+.about-story__stat-card {
+  background: #ffffff;
+  border: 1.5px solid #e8ecf1;
+  border-radius: 14px;
+  padding: 28px 22px;
+  min-height: 112px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  text-align: left;
+  gap: 18px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
+}
+
+.about-story__stat-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.10);
+  border-color: #FFB800;
+}
+
+.about-story__stat-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.about-story__stat-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  gap: 2px;
+}
+
+.about-story__stat-number {
+  font-size: 1.75rem;
+  font-weight: 900;
+  color: #0f172a;
+  line-height: 1.1;
+  font-family: 'Outfit', sans-serif;
+  letter-spacing: -0.01em;
+}
+
+.about-story__stat-label {
+  font-size: 13px;
+  font-weight: 700;
+  color: #64748b;
+  letter-spacing: 0.01em;
+  line-height: 1.25;
+}
+
+/* ── Right Column: Capabilities ── */
+.about-story__right {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.about-story__capability {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 12px 0;
+  border: none;
+  transition: all 0.25s ease;
+}
+
+.about-story__capability:hover {
+  background: transparent;
+  border-color: transparent;
+  box-shadow: none;
+}
+
+.about-story__capability-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  min-width: 60px;
+  background: transparent;
+  color: #0066CC;
+  border: none;
+  margin-top: 2px;
+}
+
+.about-story__capability-text {
+  flex: 1;
+}
+
+.about-story__capability-title {
+  font-size: 14px;
+  font-weight: 800;
+  color: #0f172a;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin: 0 0 4px 0;
+  font-family: 'Inter', sans-serif;
+  line-height: 1.3;
+}
+
+.about-story__capability-desc {
+  font-size: 13.5px;
+  font-weight: 500;
+  color: #64748b;
+  line-height: 1.5;
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+}
+
+/* ================================================================
+   Responsive: Tablet (≤ 1024px)
+   ================================================================ */
+@media (max-width: 1024px) {
+  .about-story {
+    padding: 40px 0 32px;
+  }
+
+  .about-story__grid {
+    gap: 28px;
+  }
+
+  .about-story__capability {
+    padding: 14px 16px;
+    gap: 12px;
+  }
+
+  .about-story__capability-icon {
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+  }
+}
+
+/* ================================================================
+   Responsive: Mobile (≤ 768px)
+   ================================================================ */
+@media (max-width: 768px) {
+  .about-story {
+    padding: 36px 0 28px;
+  }
+
+  .about-story__container {
+    padding: 0 16px;
+  }
+
+  .about-story__grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .about-story__section-heading {
+    margin-bottom: 28px;
+  }
+
+  .about-story__stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .about-story__stat-card {
+    padding: 16px 12px;
+  }
+
+  .about-story__stat-number {
+    font-size: 1.4rem;
+  }
+
+  .about-story__capability {
+    padding: 14px 12px;
+  }
+}

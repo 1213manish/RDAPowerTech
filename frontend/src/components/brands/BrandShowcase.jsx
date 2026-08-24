@@ -1,18 +1,84 @@
-import React from 'react';
+import React, { useState } from 'react';
+
+const brands = [
+  { name: 'SIEMENS', tag: 'Ingenuity for life', logo: '/brands/siemens.webp', color: '#009999', scale: 1.15 },
+  { name: 'ABB', tag: 'Power and productivity for a better world™', logo: '/brands/abb.webp', color: '#FF0000', scale: 1.2 },
+  { name: 'Schneider Electric', tag: 'Life Is On', logo: '/brands/schneider.webp', color: '#33D17A', scale: 1.25 },
+  { name: 'FESTO', tag: 'Automation Solutions', logo: '/brands/festo.webp', color: '#005596', scale: 1.15 },
+  { name: 'SELEC', tag: 'Creates Best Value', logo: '/brands/selec.png', color: '#FF6600', scale: 1.26 },
+  { name: 'C&S Electric', tag: 'Control & Power', logo: '/brands/cs-electric.svg', color: '#0A192F', scale: 1.50 },
+  { name: 'L&T', tag: 'Larsen & Toubro', logo: '/brands/larsen.webp', color: '#003399', scale: 1.38 },
+  { name: 'POLYCAB', tag: 'IDEAS. CONNECTED.', logo: '/brands/polycab.png', color: '#E60000', scale: 1.95 },
+  { name: 'DOWELLS', tag: 'Cable Terminals', logo: '/brands/dowells.png', color: '#002B49', scale: 2.05 },
+];
+
+function BrandCard({ brand }) {
+  const [imgFailed, setImgFailed] = useState(false);
+
+  return (
+    <div
+      style={{
+        background: '#ffffff',
+        border: '1.5px solid #e2e8f0',
+        borderRadius: '16px',
+        padding: '24px 28px',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        textAlign: 'center',
+        minWidth: '240px',
+        minHeight: '120px',
+        cursor: 'pointer',
+        transition: 'all 0.3s',
+        boxShadow: '0 4px 14px rgba(0,0,0,0.04)',
+        flexShrink: 0,
+      }}
+      className="brand-card"
+      onMouseEnter={(e) => {
+        e.currentTarget.style.boxShadow = '0 12px 32px rgba(0,0,0,0.12)';
+        e.currentTarget.style.transform = 'translateY(-4px)';
+        e.currentTarget.style.borderColor = '#FFB800';
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.boxShadow = '0 4px 14px rgba(0,0,0,0.04)';
+        e.currentTarget.style.transform = 'translateY(0)';
+        e.currentTarget.style.borderColor = '#e2e8f0';
+      }}
+    >
+      <div style={{ height: '64px', display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%' }}>
+        {!imgFailed && brand.logo ? (
+          <img
+            src={brand.logo}
+            alt={`${brand.name} logo`}
+            style={{
+              maxWidth: '85%',
+              maxHeight: '56px',
+              objectFit: 'contain',
+              transform: brand.scale ? `scale(${brand.scale})` : undefined,
+              transition: 'transform 0.2s',
+            }}
+            onError={() => setImgFailed(true)}
+          />
+        ) : (
+          <span
+            style={{
+              fontSize: '32px',
+              fontWeight: 900,
+              letterSpacing: '-0.02em',
+              color: brand.color,
+              lineHeight: 1.1,
+              fontFamily: "'Outfit', sans-serif",
+            }}
+          >
+            {brand.name}
+          </span>
+        )}
+      </div>
+    </div>
+  );
+}
 
 export default function BrandShowcase() {
-  const brands = [
-    { name: 'SIEMENS', tag: 'Ingenuity for life', color: '#009999' },
-    { name: 'ABB', tag: 'Power and productivity for a better world™', color: '#FF0000' },
-    { name: 'Schneider Electric', tag: 'Life Is On', color: '#33D17A' },
-    { name: 'FESTO', tag: 'Automation Solutions', color: '#005596' },
-    { name: 'SELEC', tag: 'Creates Best Value', color: '#FF6600' },
-    { name: 'C&C electric', tag: 'Control & Power', color: '#0A192F' },
-    { name: 'L&T', tag: 'Larsen & Toubro', color: '#003399' },
-    { name: 'POLYCAB', tag: 'IDEAS. CONNECTED.', color: '#E60000' },
-    { name: 'DOWELLS', tag: 'Cable Terminals', color: '#002B49' },
-  ];
-
   // Double brands list for seamless infinite scroller loop
   const carouselItems = [...brands, ...brands];
 
@@ -71,76 +137,9 @@ export default function BrandShowcase() {
             }}
           >
             {carouselItems.map((brand, idx) => (
-              <div
-                key={idx}
-                style={{
-                  background: '#ffffff',
-                  border: '1.5px solid #e2e8f0',
-                  borderRadius: '16px',
-                  padding: '26px 36px',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  textAlign: 'center',
-                  minWidth: '240px',
-                  minHeight: '140px',
-                  cursor: 'pointer',
-                  transition: 'all 0.3s',
-                  boxShadow: '0 4px 14px rgba(0,0,0,0.04)',
-                  flexShrink: 0,
-                }}
-                className="brand-card"
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.boxShadow = '0 12px 32px rgba(0,0,0,0.12)';
-                  e.currentTarget.style.transform = 'translateY(-4px)';
-                  e.currentTarget.style.borderColor = '#FFB800';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.boxShadow = '0 4px 14px rgba(0,0,0,0.04)';
-                  e.currentTarget.style.transform = 'translateY(0)';
-                  e.currentTarget.style.borderColor = '#e2e8f0';
-                }}
-              >
-                <span style={{
-                  fontSize: '36px',
-                  fontWeight: 900,
-                  letterSpacing: '-0.02em',
-                  color: brand.color,
-                  lineHeight: 1.1,
-                  transition: 'transform 0.2s',
-                }}>
-                  {brand.name}
-                </span>
-                <span style={{
-                  fontSize: '12.5px',
-                  color: '#64748b',
-                  fontWeight: 600,
-                  marginTop: '8px',
-                  lineHeight: 1.2,
-                  overflow: 'hidden',
-                  textOverflow: 'ellipsis',
-                  whiteSpace: 'nowrap',
-                  maxWidth: '100%',
-                }}>
-                  {brand.tag}
-                </span>
-              </div>
+              <BrandCard key={idx} brand={brand} />
             ))}
           </div>
-        </div>
-
-        {/* Carousel Indicator Line */}
-        <div style={{
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          gap: '8px',
-          marginTop: '28px',
-        }}>
-          <span style={{ width: '32px', height: '6px', borderRadius: '3px', background: '#0066CC' }} />
-          <span style={{ width: '10px', height: '6px', borderRadius: '3px', background: '#cbd5e1' }} />
-          <span style={{ width: '10px', height: '6px', borderRadius: '3px', background: '#cbd5e1' }} />
         </div>
 
       </div>

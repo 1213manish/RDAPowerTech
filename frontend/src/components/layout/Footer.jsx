@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Heart } from 'lucide-react';
 import logoImg from '../../assets/logo.png';
 
@@ -7,9 +8,7 @@ export default function Footer() {
     { label: 'Home', href: '#' },
     { label: 'About Us', href: '#about' },
     { label: 'Products', href: '#products' },
-    { label: 'Brands', href: '#brands' },
-    { label: 'Services', href: '#services' },
-    { label: 'Industries', href: '#industries' },
+    { label: 'Pricing', href: '/pricing' },
     { label: 'Contact Us', href: '#contact' },
   ];
 
@@ -18,7 +17,6 @@ export default function Footer() {
     'Variable Frequency Drives (VFD)',
     'Switchgear & MCB',
     'Control Panels',
-    'Pneumatic Products',
     'Industrial Lubricants',
     'Cables & Wires',
   ];
@@ -73,10 +71,13 @@ export default function Footer() {
             <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '10px' }}>
               {quickLinks.map((link, i) => (
                 <li key={i}>
-                  <a href={link.href} style={{ fontSize: '13.5px', color: '#cbd5e1', textDecoration: 'none', fontWeight: 500, transition: 'color 0.2s' }}
+                  {link.href === '/pricing' ? <Link to="/pricing" style={{ fontSize: '13.5px', color: '#cbd5e1', textDecoration: 'none', fontWeight: 500, transition: 'color 0.2s' }}
                     onMouseEnter={(e) => { e.currentTarget.style.color = '#FFB800'; }}
                     onMouseLeave={(e) => { e.currentTarget.style.color = '#cbd5e1'; }}
-                  >{link.label}</a>
+                  >{link.label}</Link> : <a href={link.href} style={{ fontSize: '13.5px', color: '#cbd5e1', textDecoration: 'none', fontWeight: 500, transition: 'color 0.2s' }}
+                    onMouseEnter={(e) => { e.currentTarget.style.color = '#FFB800'; }}
+                    onMouseLeave={(e) => { e.currentTarget.style.color = '#cbd5e1'; }}
+                  >{link.label}</a>}
                 </li>
               ))}
             </ul>
