@@ -186,14 +186,17 @@ $email_content = "
 </html>
 ";
 
-$headers = "MIME-Version: 1.0" . "\r\n";
-$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-$headers .= "From: RDA PowerTech Web <no-reply@rdapowertech.com>" . "\r\n";
-if (!empty($email)) {
-    $headers .= "Reply-To: " . $email . "\r\n";
-}
+$msgId = "<" . time() . "." . uniqid() . "@rdapowertech.com>";
+$headers  = "MIME-Version: 1.0\r\n";
+$headers .= "Content-Type: text/html; charset=UTF-8\r\n";
+$headers .= "From: RDA PowerTech <info@rdapowertech.com>\r\n";
+$headers .= "Reply-To: " . (!empty($email) ? $email : "info@rdapowertech.com") . "\r\n";
+$headers .= "Return-Path: info@rdapowertech.com\r\n";
+$headers .= "Message-ID: " . $msgId . "\r\n";
+$headers .= "X-Mailer: PHP/" . phpversion() . "\r\n";
+$headers .= "Date: " . date("r") . "\r\n";
 
-@mail($to, $subject, $email_content, $headers);
+@mail($to, $subject, $email_content, $headers, "-f info@rdapowertech.com");
 
 echo json_encode([
     "success" => true,
