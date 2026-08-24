@@ -134,9 +134,9 @@ export default function AboutContactSection() {
                 </a>
 
                 {/* Email */}
-                <a href="mailto:rdapowertech@gmail.com" style={{ display: 'flex', alignItems: 'center', gap: '14px', textDecoration: 'none', color: '#1e293b', fontSize: '15px', fontWeight: 600 }} className="hover:text-[#0066CC] transition-colors">
+                <a href="mailto:info@rdapowertech.com" style={{ display: 'flex', alignItems: 'center', gap: '14px', textDecoration: 'none', color: '#1e293b', fontSize: '15px', fontWeight: 600 }} className="hover:text-[#0066CC] transition-colors">
                   <Mail style={{ width: '20px', height: '20px', color: '#0f172a', flexShrink: 0 }} />
-                  <span style={{ fontWeight: 800, color: '#0f172a' }}>rdapowertech@gmail.com</span>
+                  <span style={{ fontWeight: 800, color: '#0f172a' }}>info@rdapowertech.com</span>
                 </a>
 
                 {/* Location */}

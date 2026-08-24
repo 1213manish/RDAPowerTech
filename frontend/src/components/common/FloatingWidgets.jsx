@@ -38,7 +38,7 @@ export default function FloatingWidgets() {
       title: 'Call Now',
     },
     {
-      href: 'mailto:rdapowertech@gmail.com',
+      href: 'mailto:info@rdapowertech.com',
       bg: '#EE4B2B',
       bgHover: '#d63f21',
       icon: <Mail style={{ width: '18px', height: '18px', color: 'white', flexShrink: 0 }} />,

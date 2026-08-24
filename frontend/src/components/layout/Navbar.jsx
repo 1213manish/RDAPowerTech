@@ -99,7 +99,7 @@ export default function Navbar() {
 
             {/* Email */}
             <a
-              href="mailto:rdapowertech@gmail.com"
+              href="mailto:info@rdapowertech.com"
               style={{ display: 'flex', alignItems: 'center', gap: '8.4px', color: '#334155', textDecoration: 'none' }}
               className="hover:text-[#FFB800] transition-colors group"
             >
@@ -108,7 +108,7 @@ export default function Navbar() {
               >
                 <Mail style={{ width: '14.7px', height: '14.7px', color: 'white' }} />
               </span>
-              <span style={{ fontWeight: 700, color: '#1e293b' }}>rdapowertech@gmail.com</span>
+              <span style={{ fontWeight: 700, color: '#1e293b' }}>info@rdapowertech.com</span>
             </a>
           </div>
 

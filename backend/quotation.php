@@ -94,8 +94,8 @@ try {
     error_log("Database optional save notice: " . $e->getMessage());
 }
 
-// 2. Send HTML Email to rdapowertech@gmail.com
-$to = "rdapowertech@gmail.com";
+// 2. Send HTML Email to info@rdapowertech.com
+$to = "info@rdapowertech.com";
 $subject = "New Website Quote Enquiry — RDA POWER TECH";
 
 $productRow = !empty($product) ? "<tr><td style='padding: 8px 0; font-weight: bold; width: 160px; color: #475569;'>Product / Service:</td><td style='padding: 8px 0; color: #1e293b;'>".htmlspecialchars($product)."</td></tr>" : "";
