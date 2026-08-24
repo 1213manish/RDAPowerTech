@@ -94,49 +94,94 @@ try {
     error_log("Database optional save notice: " . $e->getMessage());
 }
 
-// 2. Send HTML Email to info@rdapowertech.com
+// 2. Prepare Organized Notification Email to info@rdapowertech.com
 $to = "info@rdapowertech.com";
-$subject = "New Website Quote Enquiry — RDA POWER TECH";
+$cleanPhone = preg_replace('/[^0-9]/', '', $phone);
+$companyPart = (!empty($company) && $company !== 'N/A') ? " — " . $company : "";
+$subject = "Quotation Request #{$quotation_ref}{$companyPart} ({$name})";
 
-$productRow = !empty($product) ? "<tr><td style='padding: 8px 0; font-weight: bold; width: 160px; color: #475569;'>Product / Service:</td><td style='padding: 8px 0; color: #1e293b;'>".htmlspecialchars($product)."</td></tr>" : "";
-$quantityRow = !empty($quantity) ? "<tr><td style='padding: 8px 0; font-weight: bold; width: 160px; color: #475569;'>Quantity:</td><td style='padding: 8px 0; color: #1e293b;'>".htmlspecialchars($quantity)."</td></tr>" : "";
+$productRow = !empty($product) ? "<tr><td style='padding: 10px 14px; font-weight: 700; color: #475569; width: 170px; background: #f8fafc; border-bottom: 1px solid #e2e8f0;'>Product / Service:</td><td style='padding: 10px 14px; color: #0f172a; font-weight: 600; border-bottom: 1px solid #e2e8f0;'>".htmlspecialchars($product)."</td></tr>" : "";
+$quantityRow = !empty($quantity) ? "<tr><td style='padding: 10px 14px; font-weight: 700; color: #475569; width: 170px; background: #f8fafc; border-bottom: 1px solid #e2e8f0;'>Quantity:</td><td style='padding: 10px 14px; color: #0f172a; border-bottom: 1px solid #e2e8f0;'>".htmlspecialchars($quantity)."</td></tr>" : "";
 
 $email_content = "
+<!DOCTYPE html>
 <html>
 <head>
-  <title>New Website Quote Enquiry</title>
+  <meta charset='utf-8'>
+  <title>Quotation Request</title>
 </head>
-<body style='font-family: Arial, sans-serif; line-height: 1.6; color: #333; margin: 0; padding: 20px; background: #f1f5f9;'>
-  <div style='max-width: 600px; margin: 0 auto; border: 1px solid #e2e8f0; border-radius: 10px; overflow: hidden; background: #ffffff;'>
-    <div style='background-color: #071224; padding: 24px; text-align: center; color: white;'>
-      <h2 style='margin: 0; color: #FFB800; font-size: 20px;'>NEW WEBSITE QUOTE ENQUIRY</h2>
-      <p style='margin: 6px 0 0 0; font-size: 13px; color: #94a3b8;'>Reference: <strong style='color: #ffffff;'>$quotation_ref</strong></p>
-    </div>
-    <div style='padding: 24px; background-color: #ffffff;'>
-      <h3 style='border-bottom: 2px solid #FFB800; padding-bottom: 8px; color: #071224; margin: 0 0 16px 0; font-size: 16px;'>Customer Details</h3>
-      <table style='width: 100%; border-collapse: collapse;'>
-        <tr><td style='padding: 8px 0; font-weight: bold; width: 160px; color: #475569;'>Name:</td><td style='padding: 8px 0; color: #1e293b;'>".htmlspecialchars($name)."</td></tr>
-        <tr><td style='padding: 8px 0; font-weight: bold; color: #475569;'>Mobile:</td><td style='padding: 8px 0; color: #1e293b;'>".htmlspecialchars($phone)."</td></tr>
-        <tr><td style='padding: 8px 0; font-weight: bold; color: #475569;'>Email:</td><td style='padding: 8px 0; color: #1e293b;'>".htmlspecialchars($email ? $email : 'Not Provided')."</td></tr>
-        <tr><td style='padding: 8px 0; font-weight: bold; color: #475569;'>Business / Industry:</td><td style='padding: 8px 0; color: #1e293b;'>".htmlspecialchars($company ? $company : 'N/A')."</td></tr>
-        $productRow
-        $quantityRow
-      </table>
-      
-      <h3 style='border-bottom: 2px solid #FFB800; padding-bottom: 8px; color: #071224; margin: 24px 0 16px 0; font-size: 16px;'>Requirements</h3>
-      <p style='background: #f8fafc; padding: 14px; border-radius: 6px; border-left: 4px solid #FFB800; margin: 0; color: #334155;'>".nl2br(htmlspecialchars($remarks))."</p>
-      
-      <hr style='border: none; border-top: 1px solid #e2e8f0; margin: 24px 0 16px;' />
-      <table style='width: 100%; border-collapse: collapse; font-size: 12px; color: #94a3b8;'>
-        <tr><td style='padding: 3px 0;'>Source:</td><td>Website — RDA POWER TECH</td></tr>
-        <tr><td style='padding: 3px 0;'>Enquiry Type:</td><td>Get Quote</td></tr>
-        <tr><td style='padding: 3px 0;'>Date/Time:</td><td>$datetime</td></tr>
-      </table>
-    </div>
-    <div style='background-color: #f1f5f9; padding: 14px; text-align: center; font-size: 11px; color: #94a3b8;'>
-      Sent from RDA PowerTech Website • Quote Request Form
-    </div>
-  </div>
+<body style='margin: 0; padding: 24px 12px; background-color: #f1f5f9; font-family: -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, Helvetica, Arial, sans-serif;'>
+  <table role='presentation' border='0' cellpadding='0' cellspacing='0' width='100%' style='max-width: 620px; margin: 0 auto; background: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 16px rgba(0,0,0,0.06); border: 1px solid #e2e8f0;'>
+    <!-- Header -->
+    <tr>
+      <td style='background: #071224; padding: 26px 30px; border-bottom: 4px solid #FFB800;'>
+        <div style='color: #FFB800; font-size: 12px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase;'>RDA POWER TECH • INQUIRY ALERT</div>
+        <h1 style='margin: 6px 0 0 0; color: #ffffff; font-size: 21px; font-weight: 800;'>New Quotation Request</h1>
+        <p style='margin: 6px 0 0 0; color: #94a3b8; font-size: 13px;'>Reference: <strong style='color: #FFB800;'>$quotation_ref</strong> &nbsp;|&nbsp; $datetime</p>
+      </td>
+    </tr>
+
+    <!-- Body Content -->
+    <tr>
+      <td style='padding: 28px 30px;'>
+        
+        <!-- Quick Action Buttons -->
+        <table role='presentation' border='0' cellpadding='0' cellspacing='0' style='margin-bottom: 24px; width: 100%;'>
+          <tr>
+            <td style='padding-right: 8px; width: 50%;'>
+              <a href='tel:+91$cleanPhone' style='display: block; text-align: center; background: #0066CC; color: #ffffff; font-weight: 700; font-size: 13px; padding: 12px 14px; text-decoration: none; border-radius: 6px;'>
+                📞 Call Customer ($phone)
+              </a>
+            </td>
+            <td style='padding-left: 8px; width: 50%;'>
+              <a href='https://wa.me/91$cleanPhone?text=Hello%20$name,%20thank%20you%20for%20contacting%20RDA%20PowerTech%20regarding%20your%20quotation%20request%20($quotation_ref).' target='_blank' style='display: block; text-align: center; background: #25D366; color: #ffffff; font-weight: 700; font-size: 13px; padding: 12px 14px; text-decoration: none; border-radius: 6px;'>
+                💬 WhatsApp Customer
+              </a>
+            </td>
+          </tr>
+        </table>
+
+        <!-- Customer & Requirement Info Table -->
+        <h3 style='margin: 0 0 12px 0; font-size: 14px; font-weight: 800; color: #0f172a; text-transform: uppercase; letter-spacing: 0.05em;'>Inquiry Summary</h3>
+        <table role='presentation' border='0' cellpadding='0' cellspacing='0' width='100%' style='border: 1px solid #e2e8f0; border-radius: 8px; overflow: hidden; font-size: 13.5px;'>
+          <tr>
+            <td style='padding: 10px 14px; font-weight: 700; color: #475569; width: 170px; background: #f8fafc; border-bottom: 1px solid #e2e8f0;'>Customer Name:</td>
+            <td style='padding: 10px 14px; color: #0f172a; font-weight: 700; border-bottom: 1px solid #e2e8f0;'>".htmlspecialchars($name)."</td>
+          </tr>
+          <tr>
+            <td style='padding: 10px 14px; font-weight: 700; color: #475569; background: #f8fafc; border-bottom: 1px solid #e2e8f0;'>Mobile Number:</td>
+            <td style='padding: 10px 14px; color: #0f172a; font-weight: 700; border-bottom: 1px solid #e2e8f0;'>
+              <a href='tel:$phone' style='color: #0066CC; text-decoration: none;'>".htmlspecialchars($phone)."</a>
+            </td>
+          </tr>
+          <tr>
+            <td style='padding: 10px 14px; font-weight: 700; color: #475569; background: #f8fafc; border-bottom: 1px solid #e2e8f0;'>Email Address:</td>
+            <td style='padding: 10px 14px; color: #0f172a; border-bottom: 1px solid #e2e8f0;'>".htmlspecialchars($email ? $email : 'Not Provided')."</td>
+          </tr>
+          <tr>
+            <td style='padding: 10px 14px; font-weight: 700; color: #475569; background: #f8fafc; border-bottom: 1px solid #e2e8f0;'>Company / Unit:</td>
+            <td style='padding: 10px 14px; color: #0f172a; border-bottom: 1px solid #e2e8f0;'>".htmlspecialchars($company ? $company : 'N/A')."</td>
+          </tr>
+          $productRow
+          $quantityRow
+        </table>
+
+        <!-- Message / Requirement Box -->
+        <h3 style='margin: 22px 0 10px 0; font-size: 14px; font-weight: 800; color: #0f172a; text-transform: uppercase; letter-spacing: 0.05em;'>Requirement / Specifications</h3>
+        <div style='background: #f8fafc; border: 1px solid #e2e8f0; border-left: 4px solid #FFB800; padding: 14px 16px; border-radius: 6px; color: #334155; font-size: 13.5px; line-height: 1.5;'>
+          ".(!empty($remarks) ? nl2br(htmlspecialchars($remarks)) : '<em style=\"color: #94a3b8;\">No additional remarks provided.</em>')."
+        </div>
+
+      </td>
+    </tr>
+
+    <!-- Footer -->
+    <tr>
+      <td style='background: #f8fafc; padding: 16px 30px; text-align: center; border-top: 1px solid #e2e8f0; font-size: 12px; color: #94a3b8;'>
+        Automated notification sent from <strong style='color: #475569;'>RDA PowerTech</strong> website (<a href='https://rdapowertech.com' style='color: #0066CC; text-decoration: none;'>rdapowertech.com</a>)
+      </td>
+    </tr>
+  </table>
 </body>
 </html>
 ";
