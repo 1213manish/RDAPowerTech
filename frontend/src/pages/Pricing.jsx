@@ -5,6 +5,33 @@ import { pricingBrands } from '../data/pricingData';
 import { useQuoteModal } from '../context/QuoteContext';
 import '../styles/pricing.css';
 
+function PricingBrandLogo({ brand }) {
+  const [imgFailed, setImgFailed] = useState(false);
+
+  if (brand.logo && !imgFailed) {
+    return (
+      <img
+        src={brand.logo}
+        alt={`${brand.name} logo`}
+        style={{
+          maxWidth: '85%',
+          maxHeight: '44px',
+          objectFit: 'contain',
+          transform: brand.scale ? `scale(${brand.scale})` : undefined,
+          transition: 'transform 0.2s',
+        }}
+        onError={() => setImgFailed(true)}
+      />
+    );
+  }
+
+  return (
+    <span style={{ color: brand.color, fontFamily: "'Inter', sans-serif", fontWeight: 900 }}>
+      {brand.wordmark}
+    </span>
+  );
+}
+
 export default function Pricing() {
   const { openQuoteModal, isPricingUnlocked } = useQuoteModal();
   const [selectedBrand, setSelectedBrand] = useState(null);
@@ -149,10 +176,15 @@ export default function Pricing() {
 
           <div className="pricing-grid" style={!isPricingUnlocked ? { filter: 'blur(2px)', pointerEvents: 'auto', opacity: 0.85 } : {}}>
             {pricingBrands.map((brand) => (
-              <article className="pricing-card" key={brand.id}>
+              <article
+                className="pricing-card"
+                key={brand.id}
+                onClick={() => handleCardAction(brand)}
+                style={{ cursor: 'pointer' }}
+              >
                 <div className="pricing-card__body">
-                  <div className="pricing-wordmark" style={{ color: brand.color }}>
-                    {brand.wordmark}
+                  <div className="pricing-wordmark">
+                    <PricingBrandLogo brand={brand} />
                   </div>
                   <p>{brand.categories.slice(0, 3).join('  |  ')}</p>
                   <p>{brand.categories.slice(3).join('  |  ') || 'Industrial Solutions'}</p>
@@ -160,7 +192,10 @@ export default function Pricing() {
                 <button
                   className="pricing-card__download"
                   type="button"
-                  onClick={() => handleCardAction(brand)}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleCardAction(brand);
+                  }}
                   aria-label={`View ${brand.name} price list documents`}
                 >
                   <FileText aria-hidden="true" />
